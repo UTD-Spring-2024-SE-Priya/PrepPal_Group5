@@ -5,6 +5,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.Objects;
+
 @Document(collection = "users")
 @Data
 @Builder
@@ -19,10 +21,36 @@ public class User {
     public User(String id, String email, String username, String password)
     {
         this.id = id;
-        this.email = email;
-        this.username = username;
-        this.password = password;
+        if(checkEmail(email)) {
+            this.email = email;
+        }
+        if(checkUser(username)) {
+            this.username = username;
+        }
+        if(checkPass(password)) {
+            this.password = password;
+        }
+        if(!Objects.equals(this.id, id) || !Objects.equals(this.username, username) || !Objects.equals(this.password, password)) {
+
+            this.id = this.email = this.username= this.password = null;
+        }
     }
+
+    public boolean checkEmail(String x)
+    {
+
+        return x.contains("@test.com");
+    }
+
+    public boolean checkUser(String x)
+    {
+        return x.length() <= 15 && x.length() >= 4;
+    }
+    public boolean checkPass(String x)
+    {
+        return x.length() >= 8;
+    }
+
 
     @Override
     public String toString() {
