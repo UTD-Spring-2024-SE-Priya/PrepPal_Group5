@@ -1,5 +1,7 @@
 package com.group5.PrepPal.data;
 
+import com.group5.PrepPal.controller.UserController;
+import com.group5.PrepPal.service.UserService;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Builder;
@@ -30,7 +32,7 @@ public class User {
         if(checkPass(password)) {
             this.password = password;
         }
-        if(!Objects.equals(this.id, id) || !Objects.equals(this.username, username) || !Objects.equals(this.password, password)) {
+        if(!Objects.equals(this.id, id) || !Objects.equals(this.username, username) || !Objects.equals(this.password, password) || !Objects.equals(this.email, email)) {
 
             this.id = this.email = this.username= this.password = null;
         }
@@ -39,17 +41,21 @@ public class User {
     public boolean checkEmail(String x)
     {
 
-        return x.contains("@test.com");
+        return x.contains("@gmail.com");
     }
 
     public boolean checkUser(String x)
     {
         return x.length() <= 15 && x.length() >= 4;
+        //find if same user
+       //getAllUsers();
+       // UserService help = new UserService();
     }
     public boolean checkPass(String x)
     {
         return x.length() >= 8;
     }
+
 
 
     @Override
@@ -61,6 +67,8 @@ public class User {
                 ", password='" + password + '\'' +
                 '}';
     }
+
+
 
 
 
