@@ -14,26 +14,30 @@ public class RecipeController {
     @Autowired
     private RecipeService recipeService;
 
-
-//    @PostMapping("/fetchrecipe")
+//    @GetMapping("/fetchrecipe")
 //    public ResponseEntity<String> saveRecipeFromExternalAPI() {
 //        recipeService.saveRecipeFromExternalAPI();
-//        return ResponseEntity.ok("Recipes fetched and saved successfully");
+//        return ResponseEntity.ok("Recipe fetched and saved successfully");
 //    }
+
+    @PostMapping(value="/saverecipe")
+    public void saveRecipe(@RequestBody Recipe r) {
+        recipeService.saveRecipe(r);
+    }
 
 
     @GetMapping(value="/getall")
-    public Iterable<Recipe> getRecipes() {
+    public Iterable<Recipe> getAllRecipes() {
         return recipeService.getAllRecipes();
     }
 
     @DeleteMapping("/delete/{id}")
-    private void deleteUser(@PathVariable("id") String id) {
+    private void deleteRecipe(@PathVariable("id") String id) {
         recipeService.deleteRecipe(id);
     }
 
     @RequestMapping("/search/{id}")
-    private Recipe getRecipe(@PathVariable(name="id") String recipeID)
+    private Recipe getRecipeByID(@PathVariable(name="id") String recipeID)
     {
         return recipeService.getRecipeByID(recipeID);
     }

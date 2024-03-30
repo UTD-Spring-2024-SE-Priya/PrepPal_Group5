@@ -3,10 +3,11 @@ package com.group5.PrepPal.service;
 import com.group5.PrepPal.data.Recipe;
 import com.group5.PrepPal.data.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Arrays;
 
 
 @Service
@@ -17,25 +18,26 @@ public class RecipeService {
     @Autowired
     private RestTemplate restTemplate;
 
-    public void save(Recipe recipe)
+    public void saveRecipe(Recipe recipe)
     {
-        recipeRepository.save(recipe);
+        if(recipe != null)
+        {
+            recipeRepository.save(recipe);
+        }
     }
 
 //    public void saveRecipeFromExternalAPI() {
 //        // Make HTTP request to external API
 //        ResponseEntity<Recipe> responseEntity = restTemplate.exchange(
-//                "https://api.example.com/recipes",
+//                "https://api.edamam.com/api/recipes/v2?type=public&q=pasta&app_id=d8b8f77e&app_key=%20%208a3cd3806d967e3216fe9a8824b61cfc&diet=balanced&random=true",
 //                HttpMethod.GET,
 //                null,
 //                Recipe.class
 //        );
-//
 //        // Extract recipe data from API response
 //        Recipe recipe = responseEntity.getBody();
-//
 //        // Save recipe to MongoDB
-//        recipeRepository.save(recipe);
+//        saveRecipe(recipe);
 //    }
 
     public Iterable<Recipe> getAllRecipes() {
@@ -47,6 +49,9 @@ public class RecipeService {
     }
 
     public Recipe getRecipeByID(String recipeID) {
+        return recipeRepository.findById(recipeID).get();
+    }
+    public Recipe getRecipeByName(String recipeID) {
         return recipeRepository.findById(recipeID).get();
     }
 }
