@@ -1,6 +1,5 @@
 package com.group5.PrepPal;
 
-import com.group5.PrepPal.controller.RecipeController;
 import com.group5.PrepPal.data.Recipe;
 import com.group5.PrepPal.data.RecipeRepository;
 
@@ -13,16 +12,20 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class RecipeTest {
         @Mock
         RecipeRepository db; // Mocked Database interface
         @InjectMocks
-        RecipeService recipeService; // Automatically injects 'database' mock into 'userService'
+        static RecipeService recipeService; // Automatically injects 'database' mock into 'userService'
 
         String[] ingr = {"Flour", "2 Eggs", "Vanilla Extract", "Milk", "Sugar"};
         Recipe recipe1 = new Recipe("recipe1", "Pancakes", "Breakfast", ingr);
@@ -50,31 +53,22 @@ public class RecipeTest {
                 assertNotNull(test1.getIngredients());
                 System.out.println("Test case passed.");
 
-//
-//        //Invalid Recipe - one ingredient empty
-//        String[] ingredients2 = {"Pasta", "", "Garlic", "Salt", "Pepper", "Parmesan cheese"};
-//        Recipe test2 = new Recipe("1001", "Pasta", "Lunch", ingredients2);
-//        assertNotNull(test2.getName());
-//        assertNotNull(test2.getMealType());
-//        assertNotNull(test2.getIngredients());
-//
-//        //Invalid Recipe - invalid name
-//        String[] ingredients3 = {"Pasta", "Olive Oil", "Garlic", "Salt", "Pepper", "Parmesan cheese"};
-//        Recipe test3 = new Recipe("1001", "000", "Lunch", ingredients3);
-//        assertNull(test2.getName());
-//        assertNotNull(test2.getMealType());
-//        assertNotNull(test2.getIngredients());
-//
-//        //Invalid Recipe - invalid meal type
-//        String[] ingredients1 = {"Pasta", "Olive Oil", "Garlic", "Salt", "Pepper", "Parmesan cheese"};
-//        Recipe test4 = new Recipe("1001", "Pasta", "Meal", ingredients1);
-//        assertNotNull(test2.getName());
-//        assertNull(test2.getMealType());
-//        assertNotNull(test2.getIngredients());
-//
-//
-//        System.out.println("Test case 2 passed.");
-                //System.out.println("All test cases passed!");
-        }
+                String[] ingr = {"Pasta", "Olive oil", "Garlic", "Salt", "Pepper", "Parmesan cheese"};
+                Recipe r1 = new Recipe("1000", "Pasta", "Dinner", ingredients);
+                String[] ingr2 = {"Pasta", "Olive oil", "Garlic", "Salt", "Pepper", "Parmesan cheese"};
+                Recipe r2 = new Recipe("1000", "Pasta", "Dinner", ingredients);
+                String[] ingr3 = {"Pasta", "Olive oil", "Garlic", "Salt", "Pepper", "Parmesan cheese"};
+                Recipe r3 = new Recipe("1000", "Pasta", "Dinner", ingredients);
+                List<Recipe> mockedValues = Arrays.asList(r1, r2,r3);
 
+                when(recipeService.getAllRecipes()).thenReturn(mockedValues);
+                // Call the actual line which would make the PAI Call
+                Iterable<Recipe> recipesFetched = recipeService.getAllRecipes();
+                int count = 0;
+                for (Object element : recipesFetched) {
+                        count++;
+                }
+                assertEquals(3,count);
+
+        }
 }
