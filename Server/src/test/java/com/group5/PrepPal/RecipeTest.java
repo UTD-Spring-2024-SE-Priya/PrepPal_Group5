@@ -6,6 +6,7 @@ import com.group5.PrepPal.data.RecipeRepository;
 import static com.mongodb.assertions.Assertions.assertNotNull;
 import static com.mongodb.assertions.Assertions.assertNull;
 
+import com.group5.PrepPal.data.User;
 import com.group5.PrepPal.service.RecipeService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -69,6 +70,15 @@ public class RecipeTest {
                         count++;
                 }
                 assertEquals(3,count);
+             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                // favorites testing
+               /* User test2 = new User("4008800", "wiz.yamaguchi168@gmail.com", "bruh", "1234856378");
+                test2.addFav(test1);
+                System.out.println("Here are " + test2.getUsername() + "'s favorite recipes");
+                for(Recipe x : test2.getFavs())
+                {
+                        System.out.println(x.getName());
+                }       */
 
         }
 }
