@@ -6,6 +6,7 @@ import com.group5.PrepPal.data.RecipeRepository;
 import static com.mongodb.assertions.Assertions.assertNotNull;
 import static com.mongodb.assertions.Assertions.assertNull;
 
+import com.group5.PrepPal.data.User;
 import com.group5.PrepPal.service.RecipeService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -69,6 +70,48 @@ public class RecipeTest {
                         count++;
                 }
                 assertEquals(3,count);
+             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                // favorites testing
+               /* User test2 = new User("4008800", "wiz.yamaguchi168@gmail.com", "bruh", "1234856378");
+
+                System.out.println("Here are " + test2.getUsername() + "'s favorite recipes");
+                // valid: correct recipe
+                 test2.addFav(test1);
+                for(Recipe x : test2.getFavs())
+                {
+                        System.out.println(x.getName());
+                }
+                assertNotNull(test2.getFavs());
+
+                test2.removeFav(test1);
+                // invalid: recipe doesnt exist
+                test2.addFav(spagt);
+                assertNull(test2.getFavs());
+
+                // exceptional: no input
+                test2.addFav();
+                assertNull(test2.getFavs());
+
+
+
+
+
+                */
+
+                /* testing recipes by allergies search
+                // needs a recipe array or array list to sort through.. Method should be located in RecipeService?
+                       //some method(allergen);  prints list of recipes without it
+
+                       valid: valid allergen
+
+
+                       invalid: not a real allergen
+
+                       exceptional: no input
+
+                 */
+
+
 
         }
 }
