@@ -20,24 +20,27 @@ public class User {
     private String email;
     private String username;
     private String password;
+    private Profile userProfile;
     //private ArrayList<Recipe> favorites = new ArrayList<>();
 
     public User(String id, String email, String username, String password)
     {
-        this.id = id;
-        if(checkEmail(email)) {
-            this.email = email;
+        //If any of the fields is incorrectly set, the object is not created
+        if (!checkEmail(email)) {
+            throw new IllegalArgumentException("Invalid email format");
         }
-        if(checkUser(username)) {
-            this.username = username;
+        if (!checkUser(username)) {
+            throw new IllegalArgumentException("Invalid username format");
         }
-        if(checkPass(password)) {
-            this.password = password;
+        if (!checkPass(password)) {
+            throw new IllegalArgumentException("Invalid password format");
         }
-        if(!Objects.equals(this.id, id) || !Objects.equals(this.username, username) || !Objects.equals(this.password, password) || !Objects.equals(this.email, email)) {
 
-            this.id = this.email = this.username= this.password = null;
-        }
+        this.id = id;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.userProfile = null; //initially profile is created as null
     }
 
     public boolean checkEmail(String x)
@@ -56,6 +59,19 @@ public class User {
     public boolean checkPass(String x)
     {
         return x.length() >= 8;
+    }
+
+    public boolean saveProfile(String n, int a, double w, ArrayList<String> dr)
+    {
+        try
+        {
+            userProfile = new Profile(n, a, w, dr);
+            return true;
+        }
+        catch(IllegalArgumentException e)
+        {
+            return false;
+        }
     }
 
 
