@@ -1,5 +1,6 @@
 package com.group5.PrepPal;
 
+import com.group5.PrepPal.data.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -35,5 +36,10 @@ public class PrepPalApplication {
 			}
 		};
 
+	}
+
+	@GetMapping(value="/")
+	public String getWebsite() {
+		return "Welcome to PrepPal!";
 	}
 }
