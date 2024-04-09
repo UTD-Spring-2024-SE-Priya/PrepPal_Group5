@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 @Document(collection = "users")
@@ -19,6 +20,7 @@ public class User {
     private String email;
     private String username;
     private String password;
+    //private ArrayList<Recipe> favorites = new ArrayList<>();
 
     public User(String id, String email, String username, String password)
     {
@@ -68,7 +70,21 @@ public class User {
                 '}';
     }
 
+ /*   public void addFav(Recipe x)
+    {
+        favorites.add(x);
+    }
 
+    public void removeFav(Recipe x)
+    {
+        favorites.remove(x);
+    }
+
+    public ArrayList<Recipe> getFavs(){
+        return favorites;
+    }
+
+*/
 
 
 
