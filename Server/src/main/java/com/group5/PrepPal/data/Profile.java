@@ -1,12 +1,14 @@
 package com.group5.PrepPal.data;
 
 import java.util.ArrayList;
-
+import java.util.Random;
 public class Profile {
     private String name;
     private int age;
     private double weight;
     ArrayList<String> dietaryRestrictions;
+
+    public ArrayList<Recipe> weeklySchedule = new ArrayList<Recipe>();
 
     public Profile(String n, int a, double w, ArrayList<String> dr) {
         if(!checkName(n))
@@ -53,6 +55,41 @@ public class Profile {
     private boolean checkDietaryRestrictions(ArrayList<String> dietaryRestrictions)
     {
         return dietaryRestrictions != null && !dietaryRestrictions.isEmpty();
+    }
+
+    public void generateMeals(ArrayList<Recipe> dataBase)
+    {
+        for(int k = 0; k< dataBase.size(); k ++)
+        {
+            Recipe temp = dataBase.get(k);
+            for(int z =0; z< temp.getIngredients().length; z++)
+            {
+                String test = temp.getIngredients()[z];
+                for(int u = 0; u < dietaryRestrictions.size(); u++)
+                {
+                   if(dietaryRestrictions.get(u).equals(test))
+                   {
+                       dataBase.remove(temp);
+                   }
+                }
+            }
+        }
+        for( int x = 0; x <3; x++)
+        {
+            System.out.println("SHIBAL");
+            Recipe temp = findRandomRecipe(dataBase);
+            weeklySchedule.add(temp);
+            dataBase.remove(temp);
+        }
+
+
+    }
+
+
+    private Recipe findRandomRecipe(ArrayList<Recipe> recipes)
+    {
+        Random rand = new Random();
+        return recipes.get(rand.nextInt(recipes.size()));
     }
 
 }
