@@ -5,6 +5,7 @@ import NotFound from "pages/NotFound";
 import Login from "pages/Login";
 import SignUp from "pages/SignUp";
 import FirsttimesigninEnterProfileInformation from "pages/FirsttimesigninEnterProfileInformation"; 
+import WeeklyPlan from "pages/WeeklyPlan";
 
 
 const ProjectRoutes = () => {
@@ -19,6 +20,8 @@ const ProjectRoutes = () => {
       path: "signup",
       element: <SignUp />,
     },
+    { path: "/WeeklyPlan", element: <WeeklyPlan /> },
+    { path: "/FirstTimesigninEnterProfileInformation", element: <FirstTimesigninEnterProfileInformation /> },
   ]);
 
   return element;
