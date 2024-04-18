@@ -3,9 +3,9 @@ import { Helmet } from "react-helmet";
 import { Button, Text, SelectBox, Input, Img } from "../../components";
 
 const dropDownOptions = [
-  { label: "Option1", value: "option1" },
-  { label: "Option2", value: "option2" },
-  { label: "Option3", value: "option3" },
+  { label: "Vegetarian", value: "Vegetarian" },
+  { label: "Vegan", value: "Vegan" },
+  { label: "Nut Allergy", value: "Nut Allergy" },
 ];
 
 export default function FirsttimesigninEnterProfileInformationPage() {
