@@ -41,5 +41,10 @@ public class RecipeController {
     {
         return recipeService.getRecipeByID(recipeID);
     }
+    @GetMapping("/randRec")
+    private String getRandR()
+    {
+        return recipeService.randomRecipe();
+    }
 
 }
