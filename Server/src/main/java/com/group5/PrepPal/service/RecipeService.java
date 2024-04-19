@@ -58,9 +58,13 @@ public class RecipeService {
         return recipeRepository.findById(recipeID).get();
     }
 
-    public String randomRecipe() {
+    public String[] randomRecipe() {
         ArrayList<Recipe> temp = (ArrayList<Recipe>) recipeRepository.findAll();
         Random rand = new Random();
-        return temp.get(rand.nextInt(temp.size())).getName();
+        String [] a= new String[3];
+        a[0] = temp.get(rand.nextInt(temp.size())).getName();
+        a[1] = temp.get(rand.nextInt(temp.size())).getName();
+        a[2] = temp.get(rand.nextInt(temp.size())).getName();
+        return a;
     }
 }
