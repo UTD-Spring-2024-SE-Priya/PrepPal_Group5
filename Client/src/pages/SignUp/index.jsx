@@ -24,10 +24,10 @@ const SignUp = ()  => {
         console.log(`User created with username: ${response.data}`);
         console.log(response);
         console.log(response.data);
-        nav('//firsttimesigninenterprofileinformation');
+        nav('/firsttimesigninenterprofileinformation');
       })
       .catch(error => {
-        console.error('There was an error!', error);
+        console.error('One or more of the fields is invalid. Please retry. ');
       });
   };
   
@@ -58,7 +58,7 @@ const SignUp = ()  => {
                 placeholder={`Enter your username`}
                 className="mt-[17px] w-[93%] sm:pr-5"
                 value={username}
-                //onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => setUsername(e.target.value)}
                 required
               />
               <Input
@@ -68,7 +68,7 @@ const SignUp = ()  => {
                 placeholder={`Enter an email `}
                 className="mt-4 w-[93%] sm:pr-5"
                 value={email}
-                //onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
               <Input
@@ -78,10 +78,9 @@ const SignUp = ()  => {
                 placeholder={`Enter password`}
                 className="mt-3 w-[93%] sm:pr-5"
                 value={password}
-                //onChange={e => setPassword(e.target.value)} 
+                onChange={e => setPassword(e.target.value)} 
                 required
               />
-              </form>
               
               <Text size="s" as="p" className="mt-3 w-[46%] self-start text-center !text-blue_gray-800_7a md:w-full">
                 <>
@@ -108,6 +107,7 @@ const SignUp = ()  => {
                 <Button type="submit" shape="round" className="mr-[111px] mt-5 min-w-[199px] !rounded-[22px] md:mr-0 sm:px-5">
                   Continue
                 </Button>
+              </form>
             </div>
           </div>
         </div>
