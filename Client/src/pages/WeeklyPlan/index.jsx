@@ -1,282 +1,156 @@
-import React from "react";
-import { Button, Heading } from "../../components";
-import { default as ModalProvider } from "react-modal";
+import React, {useState} from "react";
+import axios from "axios";
+const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+//let meals = ['Monday'];
 
-export default function WeeklyPlan({ isOpen, ...props }) {
+//let name = '';
+//const mealType = '';
+/*let Recipe =
+    {
+        name,
+        mealType,
+        ingredients
+    } */
+
+
+
+
+       // let Recipe = '';
+
+
+
+export default function MealPlan() {
+//let map1 =[];
+
+    const getRecipe = () => {
+        axios.get('http://localhost:8080/api/recipe/randRec')
+            .then(response => {
+
+
+
+                console.log(response);
+                setRecipe(response.data);
+
+            }).catch(error => {
+            console.error(error);
+        })
+
+    }
+
+    const [recipe, setRecipe] = useState([3]);
+    if(recipe.length <3) {
+        getRecipe();
+    }
+
+
+
+
+
   return (
-    <ModalProvider {...props} appElement={document.getElementById("root")} isOpen={isOpen} className="min-w-[1185px]">
-      {/* schedule background section */}
-      <div className="flex w-full flex-col items-center rounded-[12px] bg-blue_gray-100_01 p-4">
-        {/* schedule content section */}
-        <div className="mb-[5px] flex w-[97%] flex-col items-center gap-5 md:w-full">
-          {/* schedule heading section */}
-          <Heading size="md" as="h1" className="text-center !text-blue_gray-800">
-            Weekly Schedule{" "}
-          </Heading>
 
-          {/* days of week section */}
-          <div className="flex flex-col items-center gap-1.5 self-stretch">
-            {/* dates row section */}
-            <div className="flex w-[94%] items-center justify-between gap-5 md:w-full md:flex-col">
-              <Heading as="h2" className="text-center !text-blue_gray-800">
-                Monday
-              </Heading>
+    <>
+        <onload recipe = {getRecipe}
 
-              {/* weekday list section */}
-              <div className="flex w-[39%] flex-wrap justify-between gap-5 md:w-full">
-                <Heading as="h3" className="text-center !text-blue_gray-800">
-                  Tuesday
-                </Heading>
-                <Heading as="h4" className="text-center !text-blue_gray-800">
-                  Wednesday
-                </Heading>
-                <Heading as="h5" className="text-center !text-blue_gray-800">
-                  Thursday
-                </Heading>
-              </div>
-              <Heading as="h6" className="text-center !text-blue_gray-800">
-                Friday
-              </Heading>
-              <Heading as="h5" className="text-center !text-blue_gray-800">
-                Saturday
-              </Heading>
-              <Heading as="h5" className="text-center !text-blue_gray-800">
-                Sunday
-              </Heading>
-            </div>
+                ></onload>
+      <div className="container mx-auto mt-10" style={{ backgroundColor: "#a3b18a"}}>
+      <div className="flex flex-col">
+        {daysOfWeek.map((day) => (
 
-            {/* meal schedule section */}
-            <div className="grid grid-cols-7 justify-center gap-5 self-stretch md:grid-cols-4 sm:grid-cols-1">
-              {/* breakfast column section */}
-              <div className="flex w-full flex-col items-center justify-center gap-1 bg-white-A700 p-[7px]">
-                <div className="h-[116px] self-stretch bg-blue_gray-100" />
-                <Heading as="h5" className="text-center">
-                  Breakfast
-                </Heading>
-                <Heading size="xs" as="p" className="text-center">
-                  00:00 AM - 00:00 AM
-                </Heading>
-              </div>
+          <div key={day} className="flex flex-row justify-between items-center border-b-2 py-4">
+            <div className="w-1/5 font-bold text-lg">{day}</div>
+            {
 
-              {/* lunch column section */}
-              <div className="flex w-full flex-col items-center justify-center gap-1 bg-white-A700 p-[7px]">
-                <div className="h-[116px] self-stretch bg-blue_gray-100" />
-                <Heading as="h5" className="text-center">
-                  Breakfast
-                </Heading>
-                <Heading size="xs" as="p" className="text-center">
-                  00:00 AM - 00:00 AM
-                </Heading>
+                recipe.map((meals) => (
+              <div key={`${day}-${meals}`} className="w-1/5 bg-gray-100 p-4 text-center rounded shadow">
+                {meals}
               </div>
-              <div className="flex w-full flex-col items-center justify-center gap-1 bg-white-A700 p-[7px]">
-                <div className="h-[116px] self-stretch bg-blue_gray-100" />
-                <Heading as="h5" className="text-center">
-                  Breakfast
-                </Heading>
-                <Heading size="xs" as="p" className="text-center">
-                  00:00 AM - 00:00 AM
-                </Heading>
-              </div>
-              <div className="flex w-full flex-col items-center justify-center gap-1 bg-white-A700 p-[7px]">
-                <div className="h-[116px] self-stretch bg-blue_gray-100" />
-                <Heading as="h5" className="text-center">
-                  Breakfast
-                </Heading>
-                <Heading size="xs" as="p" className="text-center">
-                  00:00 AM - 00:00 AM
-                </Heading>
-              </div>
-              <div className="flex w-full flex-col items-center justify-center gap-1 bg-white-A700 p-[7px]">
-                <div className="h-[116px] self-stretch bg-blue_gray-100" />
-                <Heading as="h5" className="text-center">
-                  Breakfast
-                </Heading>
-                <Heading size="xs" as="p" className="text-center">
-                  00:00 AM - 00:00 AM
-                </Heading>
-              </div>
-              <div className="flex w-full flex-col items-center justify-center gap-1 bg-white-A700 p-[7px]">
-                <div className="h-[116px] self-stretch bg-blue_gray-100" />
-                <Heading as="h5" className="text-center">
-                  Breakfast
-                </Heading>
-                <Heading size="xs" as="p" className="text-center">
-                  00:00 AM - 00:00 AM
-                </Heading>
-              </div>
-              <div className="flex w-full flex-col items-center justify-center gap-1 bg-white-A700 p-[7px]">
-                <div className="h-[116px] self-stretch bg-blue_gray-100" />
-                <Heading as="h5" className="text-center">
-                  Breakfast
-                </Heading>
-                <Heading size="xs" as="p" className="text-center">
-                  00:00 AM - 00:00 AM
-                </Heading>
-              </div>
-              <div className="flex w-full flex-col gap-[3px]">
-                <div className="flex flex-col items-center justify-center gap-[5px] bg-white-A700 p-[7px]">
-                  <div className="h-[116px] self-stretch bg-blue_gray-100" />
-                  <Heading as="h5" className="text-center">
-                    Lunch
-                  </Heading>
-                  <Heading size="xs" as="p" className="text-center">
-                    00:00 PM - 00:00 PM
-                  </Heading>
-                </div>
-                <div className="flex flex-col items-center justify-center gap-1 bg-white-A700 p-[7px]">
-                  <div className="h-[116px] self-stretch bg-blue_gray-100" />
-                  <Heading as="h5" className="text-center">
-                    Dinner
-                  </Heading>
-                  <Heading size="xs" as="p" className="text-center">
-                    00:00 PM - 00:00 PM
-                  </Heading>
-                </div>
-              </div>
-              <div className="flex w-full flex-col items-center justify-center gap-[5px] bg-white-A700 p-[7px]">
-                <div className="h-[116px] self-stretch bg-blue_gray-100" />
-                <Heading as="h5" className="text-center">
-                  Lunch
-                </Heading>
-                <Heading size="xs" as="p" className="text-center">
-                  00:00 PM - 00:00 PM
-                </Heading>
-              </div>
-              <div className="flex w-full flex-col items-center justify-center gap-[5px] bg-white-A700 p-[7px]">
-                <div className="h-[116px] self-stretch bg-blue_gray-100" />
-                <Heading as="h5" className="text-center">
-                  Lunch
-                </Heading>
-                <Heading size="xs" as="p" className="text-center">
-                  00:00 PM - 00:00 PM
-                </Heading>
-              </div>
-              <div className="flex w-full flex-col items-center justify-center gap-[5px] bg-white-A700 p-[7px]">
-                <div className="h-[116px] self-stretch bg-blue_gray-100" />
-                <Heading as="h5" className="text-center">
-                  Lunch
-                </Heading>
-                <Heading size="xs" as="p" className="text-center">
-                  00:00 PM - 00:00 PM
-                </Heading>
-              </div>
-              <div className="flex w-full flex-col items-center justify-center gap-[5px] bg-white-A700 p-[7px]">
-                <div className="h-[116px] self-stretch bg-blue_gray-100" />
-                <Heading as="h5" className="text-center">
-                  Lunch
-                </Heading>
-                <Heading size="xs" as="p" className="text-center">
-                  00:00 PM - 00:00 PM
-                </Heading>
-              </div>
-              <div className="flex w-full flex-col items-center justify-center gap-[5px] bg-white-A700 p-[7px]">
-                <div className="h-[116px] self-stretch bg-blue_gray-100" />
-                <Heading as="h5" className="text-center">
-                  Lunch
-                </Heading>
-                <Heading size="xs" as="p" className="text-center">
-                  00:00 PM - 00:00 PM
-                </Heading>
-              </div>
-              <div className="flex w-full flex-col items-center justify-center gap-[5px] bg-white-A700 p-[7px]">
-                <div className="h-[116px] self-stretch bg-blue_gray-100" />
-                <Heading as="h5" className="text-center">
-                  Lunch
-                </Heading>
-                <Heading size="xs" as="p" className="text-center">
-                  00:00 PM - 00:00 PM
-                </Heading>
-              </div>
-              <div className="flex w-full flex-col gap-[3px]">
-                <div className="flex flex-col items-center justify-center gap-[5px] bg-white-A700 p-[7px]">
-                  <div className="h-[116px] self-stretch bg-blue_gray-100" />
-                  <Heading as="h5" className="text-center">
-                    Lunch
-                  </Heading>
-                  <Heading size="xs" as="p" className="text-center">
-                    00:00 PM - 00:00 PM
-                  </Heading>
-                </div>
-                <div className="flex flex-col items-center justify-center gap-1 bg-white-A700 p-[7px]">
-                  <div className="h-[116px] self-stretch bg-blue_gray-100" />
-                  <Heading as="h5" className="text-center">
-                    Dinner
-                  </Heading>
-                  <Heading size="xs" as="p" className="text-center">
-                    00:00 PM - 00:00 PM
-                  </Heading>
-                </div>
-              </div>
-              <div className="flex w-full flex-col items-center justify-center gap-1 bg-white-A700 p-[7px]">
-                <div className="h-[116px] self-stretch bg-blue_gray-100" />
-                <Heading as="h5" className="text-center">
-                  Dinner
-                </Heading>
-                <Heading size="xs" as="p" className="text-center">
-                  00:00 PM - 00:00 PM
-                </Heading>
-              </div>
-              <div className="flex w-full flex-col items-center justify-center gap-1 bg-white-A700 p-[7px]">
-                <div className="h-[116px] self-stretch bg-blue_gray-100" />
-                <Heading as="h5" className="text-center">
-                  Dinner
-                </Heading>
-                <Heading size="xs" as="p" className="text-center">
-                  00:00 PM - 00:00 PM
-                </Heading>
-              </div>
-              <div className="flex w-full flex-col items-center justify-center gap-1 bg-white-A700 p-[7px]">
-                <div className="h-[116px] self-stretch bg-blue_gray-100" />
-                <Heading as="h5" className="text-center">
-                  Dinner
-                </Heading>
-                <Heading size="xs" as="p" className="text-center">
-                  00:00 PM - 00:00 PM
-                </Heading>
-              </div>
-              <div className="flex w-full flex-col items-center justify-center gap-1 bg-white-A700 p-[7px]">
-                <div className="h-[116px] self-stretch bg-blue_gray-100" />
-                <Heading as="h5" className="text-center">
-                  Dinner
-                </Heading>
-                <Heading size="xs" as="p" className="text-center">
-                  00:00 PM - 00:00 PM
-                </Heading>
-              </div>
-              <div className="flex w-full flex-col items-center justify-center gap-1 bg-white-A700 p-[7px]">
-                <div className="h-[116px] self-stretch bg-blue_gray-100" />
-                <Heading as="h5" className="text-center">
-                  Dinner
-                </Heading>
-                <Heading size="xs" as="p" className="text-center">
-                  00:00 PM - 00:00 PM
-                </Heading>
-              </div>
-              <div className="flex w-full flex-col items-center justify-center gap-1 bg-white-A700 p-[7px]">
-                <div className="h-[116px] self-stretch bg-blue_gray-100" />
-                <Heading as="h5" className="text-center">
-                  Dinner
-                </Heading>
-                <Heading size="xs" as="p" className="text-center">
-                  00:00 PM - 00:00 PM
-                </Heading>
-              </div>
-            </div>
+            ))}
           </div>
-
-          {/* action buttons section */}
-          <div className="ml-11 flex gap-[29px] self-start md:ml-0">
-            <a href="https://www.youtube.com/embed/bv8Fxk0sz7I" target="_blank">
-              <Button color="gray_500" size="xs" shape="round" className="min-w-[461px] font-semibold sm:px-5">
-                Dashboard
-              </Button>
-            </a>
-            <Button size="xs" shape="round" className="min-w-[461px] sm:px-5">
-              Edit
-            </Button>
-          </div>
-        </div>
+        ))}
       </div>
-    </ModalProvider>
+    </div>
+    </>
   );
-}
+};
+
+
+// import React from "react";
+// import { Button, Heading } from "../../components";
+// import Modal from "react-modal";
+
+// Modal.setAppElement("#root");
+
+// export default function WeeklyPlan({ isOpen, ...props }) {
+//   return (
+//     <Modal isOpen={isOpen} {...props} className="modal" overlayClassName="overlay">
+//       <div className="weekly-plan">
+//         <Heading size="md" as="h1" className="text-center text-blue-gray-800">
+//           Weekly Schedule
+//         </Heading>
+
+//         <div className="days-of-week">
+//           <div className="day-column">
+//             <Heading as="h2" className="text-center text-blue-gray-800">
+//               Monday
+//             </Heading>
+//           </div>
+
+//           {/* Tuesday to Sunday columns */}
+//           <div className="day-column">
+//             <Heading as="h3" className="text-center text-blue-gray-800">
+//               Tuesday
+//             </Heading>
+//           </div>
+//           <div className="day-column">
+//             <Heading as="h4" className="text-center text-blue-gray-800">
+//               Wednesday
+//             </Heading>
+//           </div>
+//           <div className="day-column">
+//             <Heading as="h5" className="text-center text-blue-gray-800">
+//               Thursday
+//             </Heading>
+//           </div>
+//           <div className="day-column">
+//             <Heading as="h6" className="text-center text-blue-gray-800">
+//               Friday
+//             </Heading>
+//           </div>
+//           <div className="day-column">
+//             <Heading as="h5" className="text-center text-blue-gray-800">
+//               Saturday
+//             </Heading>
+//           </div>
+//           <div className="day-column">
+//             <Heading as="h5" className="text-center text-blue-gray-800">
+//               Sunday
+//             </Heading>
+//           </div>
+//         </div>
+
+//         <div className="schedule-grid">
+//           {/* Render schedule items (e.g., Breakfast, Lunch, Dinner) for each day */}
+//           {Array.from({ length: 7 }).map((_, index) => (
+//             <div key={index} className="schedule-item">
+//               <div className="placeholder-image bg-blue-gray-100" />
+//               <Heading as="h5" className="text-center">
+//                 Breakfast
+//               </Heading>
+//               <p className="text-center">00:00 AM - 00:00 AM</p>
+//             </div>
+//           ))}
+//         </div>
+
+//         {/* Dashboard and Edit buttons */}
+//         <div className="dashboard-controls">
+//           <Button color="gray_500" shape="round" className="dashboard-button">
+//             Dashboard
+//           </Button>
+//           <Button shape="round" className="edit-button">
+//             Edit
+//           </Button>
+//         </div>
+//       </div>
+//     </Modal>
+//   );
+// }
