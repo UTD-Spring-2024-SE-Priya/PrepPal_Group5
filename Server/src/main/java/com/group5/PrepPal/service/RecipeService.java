@@ -7,6 +7,8 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Arrays;
 
 
@@ -40,6 +42,7 @@ public class RecipeService {
 //        saveRecipe(recipe);
 //    }
 
+
     public Iterable<Recipe> getAllRecipes() {
         return this.recipeRepository.findAll();
     }
@@ -53,5 +56,11 @@ public class RecipeService {
     }
     public Recipe getRecipeByName(String recipeID) {
         return recipeRepository.findById(recipeID).get();
+    }
+
+    public String randomRecipe() {
+        ArrayList<Recipe> temp = (ArrayList<Recipe>) recipeRepository.findAll();
+        Random rand = new Random();
+        return temp.get(rand.nextInt(temp.size())).getName();
     }
 }
