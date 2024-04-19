@@ -1,0 +1,92 @@
+[
+  {
+    "id": "recipe1",
+    "name": "Spaghetti Carbonara",
+    "mealType": "Dinner",
+    "ingredients": ["Spaghetti", "Eggs", "Bacon", "Parmesan Cheese"]
+  },
+  {
+    "id": "recipe2",
+    "name": "Chicken Alfredo",
+    "mealType": "Dinner",
+    "ingredients": ["Fettuccine", "Chicken Breast", "Heavy Cream", "Parmesan Cheese"]
+  },
+  {
+    "id": "recipe3",
+    "name": "Avocado Toast",
+    "mealType": "Breakfast",
+    "ingredients": ["Avocado", "Bread", "Tomato", "Egg"]
+  },
+  {
+    "id": "recipe4",
+    "name": "Caesar Salad",
+    "mealType": "Lunch",
+    "ingredients": ["Romaine Lettuce", "Croutons", "Parmesan Cheese", "Caesar Dressing"]
+  },
+  {
+    "id": "recipe5",
+    "name": "Grilled Cheese Sandwich",
+    "mealType": "Lunch",
+    "ingredients": ["Bread", "Cheddar Cheese", "Butter"]
+  },
+  {
+    "id": "recipe6",
+    "name": "Pancakes",
+    "mealType": "Breakfast",
+    "ingredients": ["Flour", "Milk", "Eggs", "Butter"]
+  },
+  {
+    "id": "recipe7",
+    "name": "BBQ Ribs",
+    "mealType": "Dinner",
+    "ingredients": ["Pork Ribs", "BBQ Sauce", "Brown Sugar", "Garlic"]
+  },
+  {
+    "id": "recipe8",
+    "name": "Greek Salad",
+    "mealType": "Lunch",
+    "ingredients": ["Cucumbers", "Tomatoes", "Feta Cheese", "Olives", "Red Onion"]
+  },
+  {
+    "id": "recipe9",
+    "name": "Omelette",
+    "mealType": "Breakfast",
+    "ingredients": ["Eggs", "Milk", "Cheese", "Spinach", "Tomatoes"]
+  },
+  {
+    "id": "recipe10",
+    "name": "Tacos",
+    "mealType": "Dinner",
+    "ingredients": ["Tortillas", "Ground Beef", "Lettuce", "Tomatoes", "Cheese"]
+  },
+  {
+    "id": "recipe11",
+    "name": "Fruit Smoothie",
+    "mealType": "Breakfast",
+    "ingredients": ["Banana", "Strawberries", "Yogurt", "Honey", "Orange Juice"]
+  },
+  {
+    "id": "recipe12",
+    "name": "Caesar Salad Wrap",
+    "mealType": "Lunch",
+    "ingredients": ["Flour Tortilla", "Romaine Lettuce", "Chicken Breast", "Caesar Dressing"]
+  },
+  {
+    "id": "recipe13",
+    "name": "Mushroom Risotto",
+    "mealType": "Dinner",
+    "ingredients": ["Arborio Rice", "Mushrooms", "Chicken Broth", "Parmesan Cheese"]
+  },
+  {
+    "id": "recipe14",
+    "name": "French Toast",
+    "mealType": "Breakfast",
+    "ingredients": ["Bread", "Eggs", "Milk", "Cinnamon", "Vanilla Extract"]
+  },
+  {
+    "id": "recipe15",
+    "name": "BLT Sandwich",
+    "mealType": "Lunch",
+    "ingredients": ["Bread", "Bacon", "Lettuce", "Tomato", "Mayonnaise"]
+  }
+]

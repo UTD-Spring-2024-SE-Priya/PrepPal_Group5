@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 const Home = () => {
   return (
-    <><nav class="navbar navbar-default">
+    <><nav className="navbar navbar-default">
     <div style={{backgroundColor: "#A3B18A"}}class="container-fluid">
       {/* <div class="navbar-header">
         <a class="navbar-brand" >PrepPal</a>
       </div> */}
-      <ul class="nav navbar-nav">
+      <ul className="nav navbar-nav">
         {/* <li class="active">Home</li> */}
         <li style={{ marginBottom: "10px", justifyContent: "" }}>
             <Link to="/login" style={{ color: "#344E41", textDecoration: "none" }}>
@@ -38,7 +38,7 @@ const Home = () => {
             </Link>
           </li> */}
           <li>
-            <img style={{ height: "70vh", padding: "25px", marginBottom: "25px"}} src="https://www.eatingwell.com/thmb/Ch2LFPGHsQ5kySirTzPLNd0LfdA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/14-days-clean-eating-meal-plan-1200-lede-601736337d914519bb5bf8eb83540da1.jpg" alt="Meal Plan Image"/>
+            <img style={{ height: "70vh", padding: "25px", marginBottom: "25px"}} src="https://www.eatingwell.com/thmb/Ch2LFPGHsQ5kySirTzPLNd0LfdA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/14-days-clean-eating-meal-plan-1200-lede-601736337d914519bb5bf8eb83540da1.jpg"/>
           </li>
         </ul>
       </div></>

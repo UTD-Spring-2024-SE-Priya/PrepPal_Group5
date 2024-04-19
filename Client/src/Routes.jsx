@@ -6,6 +6,8 @@ import Login from "pages/Login";
 import Dashboard from "pages/Dashboard";
 import SignUp from "pages/SignUp";
 import FirsttimesigninEnterProfileInformation from "pages/FirsttimesigninEnterProfileInformation";
+import WeeklyPlan from "pages/WeeklyPlan";
+
 
 const ProjectRoutes = () => {
   let element = useRoutes([
@@ -27,6 +29,10 @@ const ProjectRoutes = () => {
       path: "firsttimesigninenterprofileinformation",
       element: <FirsttimesigninEnterProfileInformation />,
     },
+    {
+      path: "weeklyplan",
+      element: <WeeklyPlan/>,
+    }
   ]);
 
   return element;

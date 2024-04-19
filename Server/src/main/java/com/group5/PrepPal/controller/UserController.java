@@ -13,11 +13,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping(value="/save")
-    private String saveUser(@RequestBody User user)
+    @PostMapping(value="/createUser")
+    private void saveUser(@RequestBody User user)
     {
+        user.saveProfile("N/A", 0, 0, null); //Initially set profile info to dummy values
         userService.save(user);
-        return user.getId();
+        //return user.getId();
     }
 
     @GetMapping(value="/getall")

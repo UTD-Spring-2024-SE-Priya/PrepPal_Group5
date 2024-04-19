@@ -12,33 +12,33 @@ import java.util.Objects;
 
 @Document(collection = "users")
 @Data
-@Builder
+//@Builder
 public class User {
     @Id
     private String id;
 
-    private String email;
     private String username;
+    private String email;
     private String password;
     private Profile userProfile;
     //private ArrayList<Recipe> favorites = new ArrayList<>();
 
-    public User(String id, String email, String username, String password)
+    public User(String id, String username, String email, String password)
     {
         //If any of the fields is incorrectly set, the object is not created
-        if (!checkEmail(email)) {
-            throw new IllegalArgumentException("Invalid email format");
-        }
         if (!checkUser(username)) {
             throw new IllegalArgumentException("Invalid username format");
+        }
+        if (!checkEmail(email)) {
+            throw new IllegalArgumentException("Invalid email format");
         }
         if (!checkPass(password)) {
             throw new IllegalArgumentException("Invalid password format");
         }
 
         this.id = id;
-        this.email = email;
         this.username = username;
+        this.email = email;
         this.password = password;
         this.userProfile = null; //initially profile is created as null
     }
