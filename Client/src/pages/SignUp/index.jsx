@@ -1,6 +1,7 @@
 import React,{ useState } from "react";
 import { Button, Text, Input, Img } from "../../components";
-import { Navigate, useNavigate} from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
+import { Helmet } from "react-helmet";
 import axios from "axios";
 
 
@@ -33,6 +34,14 @@ const SignUp = ()  => {
   
 
   return (
+    <>
+    <Helmet>
+        <title>Login - Access Your Meal Planning Account</title>
+        <meta
+          name="description"
+          content="Log in to manage your meal plans and access a variety of features. Enter your email or use Google to sign in to your existing account quickly and securely."
+        />
+      </Helmet>
       <div className="w-full bg-blue_gray-100_01">
         <div className="flex items-start justify-between gap-5 bg-blue_gray-800 p-11 md:flex-col md:p-5">
           {/* logo section */}
@@ -112,6 +121,7 @@ const SignUp = ()  => {
           </div>
         </div>
       </div>
+      </>
   );
 }
 

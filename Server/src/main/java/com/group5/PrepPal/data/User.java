@@ -15,10 +15,9 @@ import java.util.Objects;
 //@Builder
 public class User {
     @Id
-    private String id;
+    private String email;
 
     private String username;
-    private String email;
     private String password;
     private Profile userProfile;
     //private ArrayList<Recipe> favorites = new ArrayList<>();
@@ -36,7 +35,6 @@ public class User {
             throw new IllegalArgumentException("Invalid password format");
         }
 
-        this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -79,7 +77,6 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id='" + id + '\'' +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
@@ -101,7 +98,5 @@ public class User {
     }
 
 */
-
-
 
 }

@@ -1,9 +1,39 @@
-import React from "react";
+import React,{ useState } from "react";
 import { Helmet } from "react-helmet";
 import { Button, Text, Input, Img } from "../../components";
-import { Link } from "react-router-dom";
+import { useNavigate, Link} from 'react-router-dom';
+import axios from "axios";
 
 export default function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const nav = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    const login = {
+      email,
+      password
+    };
+
+    axios.request(`http://localhost:8080/api/user/search/${email}`)
+      .then(response => {
+        console.log(`User logged in with email: ${response.data}`);
+        console.log(response);
+        console.log(response.data);
+        nav('/dashboard');
+      })
+      .catch(error => {
+        console.error('Invalid email or password. Please try again.');
+        console.log(error);
+        nav('/dashboard');
+      });
+
+    setEmail("");
+    setPassword("");
+  };
+
   return (
     <>
       <Helmet>
@@ -41,6 +71,7 @@ export default function LoginPage() {
                 Enter the email associated with your existing account or sign in using Google{" "}
               </Text>
 
+            <form onSubmit={handleLogin} className="login">
               {/* email input section */}
               <Input
                 shape="square"
@@ -48,6 +79,9 @@ export default function LoginPage() {
                 name="email"
                 placeholder={`Enter email`}
                 className="mt-3.5 self-stretch sm:pr-5"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               />
 
               {/* password input section */}
@@ -57,14 +91,17 @@ export default function LoginPage() {
                 name="password"
                 placeholder={`Enter password`}
                 className="mt-[9px] self-stretch sm:pr-5"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
               />
-              
-                {/* login button section */}
-                <Link to="/dashboard">
-                <Button shape="round" className="mt-[18px] min-w-[199px] !rounded-[22px] sm:px-5">
-                  Log in
-                </Button>
-                </Link>
+
+              {/* login button section */}
+              <Button type="submit" shape="round" className="mt-[18px] min-w-[199px] !rounded-[22px] sm:px-5" onClick={handleLogin}>
+                Log in
+              </Button>
+
+              </form>
 
               {/* forgot password button section */}
               <Button color="gray_500" shape="round" className="mt-3 min-w-[199px] !rounded-[22px] sm:px-5">
