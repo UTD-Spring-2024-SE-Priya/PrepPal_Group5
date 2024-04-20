@@ -1,19 +1,68 @@
-import React from "react";
-
+import React, {useState} from "react";
+import axios from "axios";
 const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-const meals = ['Breakfast', 'Lunch', 'Dinner'];
+//let meals = ['Monday'];
+
+//let name = '';
+//const mealType = '';
+/*let Recipe =
+    {
+        name,
+        mealType,
+        ingredients
+    } */
+
+
+
+
+       // let Recipe = '';
+
+
 
 export default function MealPlan() {
+//let map1 =[];
+
+    const getRecipe = () => {
+        axios.get('http://localhost:8080/api/recipe/randRec')
+            .then(response => {
+
+
+
+                console.log(response);
+                setRecipe(response.data);
+
+            }).catch(error => {
+            console.error(error);
+        })
+
+    }
+
+    const [recipe, setRecipe] = useState([3]);
+    if(recipe.length <3) {
+        getRecipe();
+    }
+
+
+
+
+
   return (
+
     <>
+        <onload recipe = {getRecipe}
+
+                ></onload>
       <div className="container mx-auto mt-10" style={{ backgroundColor: "#a3b18a"}}>
       <div className="flex flex-col">
         {daysOfWeek.map((day) => (
+
           <div key={day} className="flex flex-row justify-between items-center border-b-2 py-4">
             <div className="w-1/5 font-bold text-lg">{day}</div>
-            {meals.map((meal) => (
-              <div key={`${day}-${meal}`} className="w-1/5 bg-gray-100 p-4 text-center rounded shadow">
-                {meal}
+            {
+
+                recipe.map((meals) => (
+              <div key={`${day}-${meals}`} className="w-1/5 bg-gray-100 p-4 text-center rounded shadow">
+                {meals}
               </div>
             ))}
           </div>
