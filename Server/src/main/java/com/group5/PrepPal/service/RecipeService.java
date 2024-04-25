@@ -30,14 +30,14 @@ public class RecipeService {
 
 //    public void saveRecipeFromExternalAPI() {
 //        // Make HTTP request to external API
-//        ResponseEntity<Recipe> responseEntity = restTemplate.exchange(
+//        ResponseEntity<Recipe.java> responseEntity = restTemplate.exchange(
 //                "https://api.edamam.com/api/recipes/v2?type=public&q=pasta&app_id=d8b8f77e&app_key=%20%208a3cd3806d967e3216fe9a8824b61cfc&diet=balanced&random=true",
 //                HttpMethod.GET,
 //                null,
-//                Recipe.class
+//                Recipe.java.class
 //        );
 //        // Extract recipe data from API response
-//        Recipe recipe = responseEntity.getBody();
+//        Recipe.java recipe = responseEntity.getBody();
 //        // Save recipe to MongoDB
 //        saveRecipe(recipe);
 //    }

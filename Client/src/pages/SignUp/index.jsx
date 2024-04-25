@@ -25,7 +25,7 @@ const SignUp = ()  => {
         console.log(`User created with username: ${response.data}`);
         console.log(response);
         console.log(response.data);
-        nav('/firsttimesigninenterprofileinformation');
+        nav('/firsttimesigninenterprofileinformation', { state: { email } });
       })
       .catch(error => {
         console.error('One or more of the fields is invalid. Please retry. ');

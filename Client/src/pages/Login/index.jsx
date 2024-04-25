@@ -17,17 +17,15 @@ export default function LoginPage() {
       password
     };
 
-    axios.request(`http://localhost:8080/api/user/search/${email}`)
+      axios.post(`http://localhost:8080/api/user/login`, login)
       .then(response => {
-        console.log(`User logged in with email: ${response.data}`);
-        console.log(response);
-        console.log(response.data);
-        nav('/dashboard');
+        if (response.data.success) {
+          nav('/dashboard', { state: { email } });
+        }
       })
       .catch(error => {
-        console.error('Invalid email or password. Please try again.');
-        console.log(error);
-        nav('/dashboard');
+        console.error('There was an error!', error);
+        window.alert('Invalid username or password');
       });
 
     setEmail("");

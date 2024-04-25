@@ -1,14 +1,21 @@
 package com.group5.PrepPal.data;
 
+import lombok.Builder;
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.Random;
+@Data
+//@Builder
 public class Profile {
     private String name;
     private int age;
     private double weight;
     ArrayList<String> dietaryRestrictions;
-
     public ArrayList<Recipe> weeklySchedule = new ArrayList<Recipe>();
+
+    public Profile() {}
+
 
     public Profile(String n, int a, double w, ArrayList<String> dr) {
         if(!checkName(n))
@@ -36,7 +43,7 @@ public class Profile {
     // Method to validate name
     private boolean checkName(String name)
     {
-        return name != null && !name.isEmpty();
+        return name != null && !name.trim().isEmpty();
     }
 
     // Method to validate age
@@ -76,7 +83,6 @@ public class Profile {
         }
         for( int x = 0; x <3; x++)
         {
-            System.out.println("SHIBAL");
             Recipe temp = findRandomRecipe(dataBase);
             weeklySchedule.add(temp);
             dataBase.remove(temp);

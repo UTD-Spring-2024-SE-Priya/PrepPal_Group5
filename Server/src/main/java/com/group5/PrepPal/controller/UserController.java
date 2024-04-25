@@ -27,34 +27,44 @@ public class UserController {
         //return user.getId();
     }
 
-    @PutMapping(value="/createProfile")
-    private void saveProfile(@RequestBody User user, @RequestBody Profile prof)
+    @PostMapping(value="/createProfile/{userEmail}")
+    private void saveProfile(@PathVariable String userEmail, @RequestBody Profile prof)
     {
-        user.setUserProfile(prof);
+        User user = userService.getUserByEmail(userEmail);
+        user.saveProfile(prof);
         userService.save(user);
-        //return user.getId();
     }
 
-//    None of this code commented is working properly
-//    @PostMapping(value="/login")
-//    public ResponseEntity<String> login(@RequestBody Map<String, String> credentials) {
-//        String email = credentials.get("email");
-//        String password = credentials.get("password");
-//
-//        User user = userService.getUserByID(email);
-//
-//        if (user==null)
-//        {
-//            return ResponseEntity.ok("NULL.");
-//        }
-//        else if(user.getPassword().equals(password)) {
-//            return ResponseEntity.ok("User successfully authenticated.");
-//        } else {
-//            return ResponseEntity.status(401).body("Invalid email or password.");
-//        }
-//    }
-//
-//    @PostMapping(value="/login")
+    @PostMapping(value="/login")
+    public ResponseEntity<Map<String, Object>> signIn(@RequestBody Map<String, String> signInData){
+        String email = signInData.get("email");
+        String password = signInData.get("password");
+
+        User user = userService.getUserByEmail(email);
+        Map<String, Object> response = new HashMap<>();
+        if (user != null && user.getPassword().equals(password)) {
+            // User is logged in
+            response.put("success", true);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } else {
+            // Invalid username or password
+            response.put("success", false);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+    }
+
+
+    @GetMapping(value="/getall")
+    public Iterable<User> getUsers() {
+        return userService.getAllUsers();
+    }
+
+    @DeleteMapping(value="/delete/{id}")
+    private void deleteUser(@PathVariable("id") String id) {
+        userService.deleteUser(id);
+    }
+
+//    @RequestMapping(value="/search/{id}")
 //    public ResponseEntity<String> login(@RequestBody Map<String, String> credentials) {
 //        String email = credentials.get("email");
 //        String password = credentials.get("password");
@@ -76,48 +86,5 @@ public class UserController {
 //            }
 //        }
 //    }
-
-//    @GetMapping("/{id}")
-//    public ResponseEntity<User> getUser(@PathVariable String id) {
-//        User user = userService.getUserByEmail(id);
-//        if (user != null) {
-//            return ResponseEntity.ok(user);
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
-
-    @GetMapping(value="/getall")
-    public Iterable<User> getUsers() {
-        return userService.getAllUsers();
-    }
-
-    @DeleteMapping(value="/delete/{id}")
-    private void deleteUser(@PathVariable("id") String id) {
-        userService.deleteUser(id);
-    }
-
-    @RequestMapping(value="/search/{id}")
-        public ResponseEntity<String> login(@RequestBody Map<String, String> credentials) {
-        String email = credentials.get("email");
-        String password = credentials.get("password");
-
-        // Retrieve user by email from the database
-        User user = userService.getUserByEmail(email);
-
-        if (user == null) {
-            // User not found
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
-        } else {
-            // Compare the entered password with the user's password
-            if (password.equals(user.getPassword())) {
-                // Passwords match, user is authenticated
-                return ResponseEntity.ok("User successfully authenticated");
-            } else {
-                // Passwords do not match
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
-            }
-        }
-    }
 
 }

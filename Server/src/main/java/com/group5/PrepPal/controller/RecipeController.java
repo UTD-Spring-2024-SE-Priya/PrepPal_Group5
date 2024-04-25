@@ -17,7 +17,7 @@ public class RecipeController {
 //    @GetMapping("/fetchrecipe")
 //    public ResponseEntity<String> saveRecipeFromExternalAPI() {
 //        recipeService.saveRecipeFromExternalAPI();
-//        return ResponseEntity.ok("Recipe fetched and saved successfully");
+//        return ResponseEntity.ok("Recipe.java fetched and saved successfully");
 //    }
 
     @PostMapping(value="/saverecipe")

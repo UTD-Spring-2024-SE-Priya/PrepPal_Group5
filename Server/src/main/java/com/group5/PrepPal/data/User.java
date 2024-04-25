@@ -20,9 +20,9 @@ public class User {
     private String username;
     private String password;
     private Profile userProfile;
-    //private ArrayList<Recipe> favorites = new ArrayList<>();
+    //private ArrayList<Recipe.java> favorites = new ArrayList<>();
 
-    public User(String id, String username, String email, String password)
+    public User(String username, String email, String password)
     {
         //If any of the fields is incorrectly set, the object is not created
         if (!checkUser(username)) {
@@ -72,6 +72,19 @@ public class User {
         }
     }
 
+    public boolean saveProfile(Profile p)
+    {
+        try
+        {
+            userProfile = p;
+            return true;
+        }
+        catch(IllegalArgumentException e)
+        {
+            return false;
+        }
+    }
+
 
 
     @Override
@@ -83,17 +96,17 @@ public class User {
                 '}';
     }
 
- /*   public void addFav(Recipe x)
+ /*   public void addFav(Recipe.java x)
     {
         favorites.add(x);
     }
 
-    public void removeFav(Recipe x)
+    public void removeFav(Recipe.java x)
     {
         favorites.remove(x);
     }
 
-    public ArrayList<Recipe> getFavs(){
+    public ArrayList<Recipe.java> getFavs(){
         return favorites;
     }
 

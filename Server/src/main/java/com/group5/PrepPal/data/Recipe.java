@@ -24,24 +24,22 @@ public class Recipe {
     private String[] ingredients;
 
 
-    public Recipe(String id, String name, String mealType, String[] ingredients)
-    {
+    public Recipe(String id, String name, String mealType, String[] ingredients) {
         this.id = id;
-        if(checkName(name)) {
-            this.name = name;
+        if (!checkName(name)) {
+            throw new IllegalArgumentException("Invalid name");
         }
-        if(checkMealType(mealType)) {
-            this.mealType = mealType;
+        if (!checkMealType(mealType)) {
+            throw new IllegalArgumentException("Invalid meal type");
         }
-        if(checkIngredients(ingredients)) {
-            this.ingredients = ingredients;
+        if (!checkIngredients(ingredients)) {
+            throw new IllegalArgumentException("Invalid ingredients");
         }
-        if(!Objects.equals(this.id, id) || !Objects.equals(this.name, name) || !Objects.equals(this.mealType, mealType) || !Arrays.equals(this.ingredients, ingredients)) {
-
-            this.id = this.name = this.mealType= null;
-            this.ingredients = null;
-        }
+        this.name = name;
+        this.mealType = mealType;
+        this.ingredients = ingredients;
     }
+
 
     public boolean checkName(String x)
     {
@@ -68,4 +66,3 @@ public class Recipe {
         return false;
     }
 }
-
