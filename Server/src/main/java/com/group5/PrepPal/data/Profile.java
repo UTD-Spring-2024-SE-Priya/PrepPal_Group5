@@ -12,7 +12,7 @@ public class Profile {
     private int age;
     private double weight;
     ArrayList<String> dietaryRestrictions;
-    public ArrayList<Recipe> weeklySchedule = new ArrayList<Recipe>();
+    public ArrayList<Recipe> weeklySchedule;
 
     public Profile() {}
 
@@ -38,6 +38,7 @@ public class Profile {
         this.age = a;
         this.weight = w;
         this.dietaryRestrictions = dr;
+        this.weeklySchedule = null;
     }
 
     // Method to validate name
@@ -66,6 +67,7 @@ public class Profile {
 
     public void generateMeals(ArrayList<Recipe> dataBase)
     {
+        weeklySchedule = new ArrayList<Recipe>();
         for(int k = 0; k< dataBase.size(); k ++)
         {
             Recipe temp = dataBase.get(k);
@@ -87,8 +89,6 @@ public class Profile {
             weeklySchedule.add(temp);
             dataBase.remove(temp);
         }
-
-
     }
 
 

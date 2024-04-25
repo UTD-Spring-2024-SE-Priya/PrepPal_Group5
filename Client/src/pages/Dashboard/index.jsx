@@ -2,9 +2,12 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { Text, Img } from "../../components";
 import { MenuItem, Menu, Sidebar } from "react-pro-sidebar";
-import { Link } from "react-router-dom";
+import { useLocation, Link} from "react-router-dom";
 
 export default function DashboardPage() {
+  const location = useLocation();
+  const email = location.state?.email || '';
+  
   return (
     <>
       <Helmet>
@@ -83,7 +86,7 @@ export default function DashboardPage() {
             ID
           </Text>
           <Text size="xs" as="p" className="text-center !text-blue-A700">
-            email@example.com
+            {email}
           </Text>
         </div>
       </div>

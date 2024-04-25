@@ -20,7 +20,7 @@ public class User {
     private String username;
     private String password;
     private Profile userProfile;
-    //private ArrayList<Recipe.java> favorites = new ArrayList<>();
+    private ArrayList<Recipe> favorites = new ArrayList<>();
 
     public User(String username, String email, String password)
     {
@@ -39,11 +39,11 @@ public class User {
         this.email = email;
         this.password = password;
         this.userProfile = null; //initially profile is created as null
+        this.favorites = null;
     }
 
     public boolean checkEmail(String x)
     {
-
         return x.contains("@gmail.com");
     }
 
@@ -85,7 +85,10 @@ public class User {
         }
     }
 
-
+    public void saveRecipe(Recipe r)
+    {
+        favorites.add(r);
+    }
 
     @Override
     public String toString() {
